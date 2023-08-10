@@ -3,6 +3,7 @@ from aiogram.dispatcher import Dispatcher
 from create_bot import dp, bot
 from keyboards import kb_client
 from aiogram.types import ReplyKeyboardRemove
+from data_base import sqlite_db
 
 async def command_start(message : types.Message):
     try:
@@ -13,6 +14,7 @@ async def command_start(message : types.Message):
 
 async def command_food(message : types.Message):
         await bot.send_message(message.from_user.id, 'food')
+        await sqlite_db.sql_read(message)
 
 async def command_schedule(message : types.Message):
         await bot.send_message(message.from_user.id, 'schedule')
