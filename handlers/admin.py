@@ -4,6 +4,8 @@ from aiogram import types
 from create_bot import dp, bot
 from aiogram import Dispatcher
 from aiogram.dispatcher.filters import Text
+from data_base import sqlite_db
+from keyboards import admin_kb
 
 ID = None
 
@@ -18,7 +20,7 @@ class FSMAdmin(StatesGroup):
 async def make_changes_command(message: types.Message):
     global ID
     ID = message.from_user.id
-    await bot.send_message(message.from_user.id, 'admin panel')
+    await bot.send_message(message.from_user.id, 'admin panel', reply_markup=admin_kb.button_case_admin)
     await message.delete()
 
 #Запуск машины состояний
@@ -26,7 +28,7 @@ async def make_changes_command(message: types.Message):
 async def cm_start(message : types.Message):
     if message.from_user.id == ID: 
         await FSMAdmin.photo.set()
-        await message.reply('Downlooad the image')
+        await message.reply('Download the image')
     
 
 #отмена машины состояний
@@ -72,9 +74,8 @@ async def load_price(message : types.Message, state: FSMContext):
     if message.from_user.id == ID:
         async with state.proxy() as data:
             data['price'] = float(message.text)
-        
-        async with state.proxy() as data:
-            await message.reply(str(data))
+
+        await sqlite_db.sql_add_command(state)
 
         await state.finish()
 
