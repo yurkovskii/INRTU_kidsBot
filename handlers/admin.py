@@ -26,7 +26,7 @@ async def make_changes_command(message: types.Message):
 async def cm_start(message : types.Message):
     if message.from_user.id == ID: 
         await FSMAdmin.photo.set()
-        await message.reply('Download the image')
+        await message.reply('Downlooad the image')
     
 
 #отмена машины состояний
