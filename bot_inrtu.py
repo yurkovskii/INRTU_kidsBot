@@ -1,11 +1,12 @@
 from aiogram.utils import executor
 from create_bot import dp
 from handlers import client, admin, other
-from data_base import sqlite_db
+#from data_base import sqlite_db
+from data_base import postgre_db
 
 async def on_startup(_):
     print('bot is online now *_*')
-    sqlite_db.sql_start()
+    #postgre_db.sql_start()
 
 
 client.register_handlers_client(dp)
