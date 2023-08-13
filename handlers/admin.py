@@ -4,7 +4,6 @@ from aiogram import types
 from create_bot import dp, bot
 from aiogram import Dispatcher
 from aiogram.dispatcher.filters import Text
-#from data_base import sqlite_db
 from data_base import postgre_db
 from keyboards import admin_kb
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton

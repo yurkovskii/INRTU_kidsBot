@@ -3,7 +3,6 @@ from aiogram.dispatcher import Dispatcher
 from create_bot import dp, bot
 from keyboards import kb_client
 from aiogram.types import ReplyKeyboardRemove
-from data_base import sqlite_db
 from data_base import postgre_db
 from data_base import sql_commands
 
