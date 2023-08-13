@@ -43,7 +43,7 @@ try:
         cursor.execute(
             """CREATE TABLE IF NOT EXISTS food_type(
                     food_photo varchar,
-	                food_name varchar(50) PRIMARY KEY,
+	                food_name text PRIMARY KEY,
 	                food_description varchar(100),
                     food_type_num varchar(1))"""
                     )

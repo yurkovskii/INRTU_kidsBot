@@ -38,3 +38,31 @@ async def sql_read_food_type(message):
     
     connection.close()
     print("[INFO] DISCONNECTED FROM DB")
+
+async def sql_read2():
+    connection = psycopg2.connect(
+        host = "127.0.0.1",
+        user = "postgres",
+        password = "y",
+        database = "inrtu_kidsDB"
+    )
+    print("[INFO] CONNECTED TO DB")
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM food_type")
+        results = cursor.fetchall()
+        return results
+
+async def sql_food_delete_command(data):
+    connection = psycopg2.connect(
+        host = "127.0.0.1",
+        user = "postgres",
+        password = "y",
+        database = "inrtu_kidsDB"
+    )
+    print("[INFO] CONNECTED TO DB")
+    with connection.cursor() as cursor:
+        cursor.execute('DELETE FROM food_type WHERE food_name = %s', (data,))
+        connection.commit()
+    
+    connection.close()
+    print("[INFO] DISCONNECTED FROM DB")
